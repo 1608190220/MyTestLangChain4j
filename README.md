@@ -385,3 +385,10 @@ java -jar target/langchain-1.0-SNAPSHOT.jar
 - 为 Skill 增加权限控制与审计日志
 - 增加自动化测试（Controller/Service/Skill）
 - 增加 Dockerfile 与一键部署配置
+
+
+## 其他提示
+
+- 请勿直接往master分支提交
+- 若有个人需要，可从develop分支切出属于你自己的分支进行验证
+- 不定期考虑将其他分支合并到develop
