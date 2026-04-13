@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <!-- 定义颜色样式 -->
+        <Property name="COLOR_PATTERN">%style{%d{yyyy-MM-dd HH:mm:ss.SSS}}{cyan} %style{[%t]}{magenta} %highlight{%-5level}{FATAL=red blink, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white} %style{%logger{36}}{yellow} - %msg%n</Property>
+        <Property name="NO_COLOR_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 彩色控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${COLOR_PATTERN}" disableAnsi="false" noConsoleNoAnsi="false"/>
+        </Console>
+
+        <!-- 无颜色控制台输出（用于不支持 ANSI 的环境） -->
+        <Console name="ConsoleNoColor" target="SYSTEM_OUT">
+            <PatternLayout pattern="${NO_COLOR_PATTERN}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root logger -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+        <!-- Skill 相关 debug 日志 -->
+        <Logger name="com.example.langchain.skill" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- ChatService debug 日志 -->
+        <Logger name="com.example.langchain.service.impl.ChatServiceImpl" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+    </Loggers>
+</Configuration>

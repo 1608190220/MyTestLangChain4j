@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedding 测试</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>🧪 Embedding 测试</h1>
+        <p>文本向量化与写入 ChromaDB</p>
+    </header>
+
+    <div class="tips">
+        <strong>操作说明</strong>
+        输入文本后可先做向量测试，再写入 ChromaDB。metadata 为 JSON 格式（可选）。
+        <div style="margin-top: 8px;">
+            <a href="/" style="color:#0d6efd;text-decoration:none;">返回聊天页</a>
+            <span style="margin:0 8px;color:#9ca3af;">|</span>
+            <a href="/chroma-browser.html" style="color:#0d6efd;text-decoration:none;">查看 Chroma 数据</a>
+        </div>
+    </div>
+
+    <main class="chat-container">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+            <textarea id="textInput" rows="7" style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;" placeholder="请输入待向量化文本"></textarea>
+            <input id="idInput" type="text" style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;" placeholder="可选：指定文档 ID（不填则自动生成）">
+            <textarea id="metadataInput" rows="4" style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;" placeholder='可选：metadata JSON，例如 {"tag":"demo","source":"ui"}'></textarea>
+            <div style="display:flex;gap:10px;">
+                <button id="testBtn" type="button" style="padding:10px 18px;border:none;border-radius:999px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:#fff;cursor:pointer;">测试 Embedding</button>
+                <button id="ingestBtn" type="button" style="padding:10px 18px;border:none;border-radius:999px;background:linear-gradient(135deg, #10b981 0%, #059669 100%);color:#fff;cursor:pointer;">写入 ChromaDB</button>
+            </div>
+            <pre id="resultBox" style="background:#111827;color:#e5e7eb;padding:12px;border-radius:12px;min-height:220px;white-space:pre-wrap;word-break:break-all;"></pre>
+        </div>
+    </main>
+</div>
+<script src="js/embedding.js"></script>
+</body>
+</html>

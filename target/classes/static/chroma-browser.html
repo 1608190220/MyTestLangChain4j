@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroma 数据查看</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>🗂️ Chroma 数据查看</h1>
+        <p>查看集合信息与向量记录明细</p>
+    </header>
+
+    <div class="tips">
+        <strong>操作说明</strong>
+        先刷新集合列表，再选择集合查看记录。支持分页查看 document 与 metadata。
+        <div style="margin-top: 8px;">
+            <a href="/" style="color:#0d6efd;text-decoration:none;">返回聊天页</a>
+            <span style="margin:0 8px;color:#9ca3af;">|</span>
+            <a href="/embedding.html" style="color:#0d6efd;text-decoration:none;">去 Embedding 测试页</a>
+        </div>
+    </div>
+
+    <main class="chat-container">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                <button id="refreshCollectionsBtn" type="button" style="padding:10px 18px;border:none;border-radius:999px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:#fff;cursor:pointer;">刷新集合列表</button>
+                <select id="collectionSelect" style="min-width:280px;padding:10px;border:2px solid #e0e0e0;border-radius:10px;"></select>
+                <input id="limitInput" type="number" min="1" max="200" value="20" style="width:120px;padding:10px;border:2px solid #e0e0e0;border-radius:10px;" placeholder="每页数量">
+                <button id="loadRecordsBtn" type="button" style="padding:10px 18px;border:none;border-radius:999px;background:linear-gradient(135deg, #10b981 0%, #059669 100%);color:#fff;cursor:pointer;">加载记录</button>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                <button id="prevBtn" type="button" style="padding:8px 14px;border:1px solid #d1d5db;border-radius:999px;background:#fff;cursor:pointer;">上一页</button>
+                <button id="nextBtn" type="button" style="padding:8px 14px;border:1px solid #d1d5db;border-radius:999px;background:#fff;cursor:pointer;">下一页</button>
+                <span id="pageInfo" style="color:#4b5563;font-size:14px;"></span>
+            </div>
+            <pre id="overviewBox" style="background:#0f172a;color:#e2e8f0;padding:12px;border-radius:12px;min-height:120px;white-space:pre-wrap;word-break:break-all;"></pre>
+            <div id="recordsContainer" style="display:flex;flex-direction:column;gap:10px;"></div>
+        </div>
+    </main>
+</div>
+<script src="js/chroma-browser.js"></script>
+</body>
+</html>

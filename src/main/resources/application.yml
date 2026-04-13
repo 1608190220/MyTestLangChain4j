@@ -1,0 +1,83 @@
+# =========================
+# LangChain4j 模型配置
+# =========================
+langchain4j:
+  open-ai:
+    chat-model:
+      # 模型 API Key（建议通过环境变量注入，避免明文写入）
+      api-key: ${OPENAI_API_KEY:}
+      # 模型名称（当前默认使用 Moonshot/Kimi 模型名）
+      model-name: ${OPENAI_MODEL_NAME:kimi-k2.5}
+      # OpenAI 兼容接口地址（可替换为自建网关或其他兼容服务）
+      base-url: ${OPENAI_BASE_URL:https://api.moonshot.cn/v1}
+      # 是否打印请求日志（生产环境建议关闭）
+      log-requests: ${OPENAI_LOG_REQUESTS:true}
+      # 是否打印响应日志（生产环境建议关闭）
+      log-responses: ${OPENAI_LOG_RESPONSES:true}
+      # 模型请求超时时间（秒）
+      timeout: ${OPENAI_TIMEOUT:60}
+      # 采样温度，越大越发散，越小越稳定
+      temperature: ${OPENAI_TEMPERATURE:0.7}
+      # 模型最大输出 token 数
+      max-tokens: ${OPENAI_MAX_TOKENS:2000}
+
+# =========================
+# 业务应用配置
+# =========================
+app:
+  chat:
+    # 聊天接口单次调用超时（秒）
+    api-timeout-seconds: 30
+    # 失败重试次数
+    max-retry-attempts: 3
+    # 重试基础间隔（毫秒）
+    retry-delay-ms: 1000
+  vector-store:
+    # 向量库提供方（当前为 chromadb）
+    provider: chromadb
+    chroma:
+      # Chroma 服务地址
+      base-url: ${CHROMA_BASE_URL:http://localhost:8000}
+      # 认证类型：none / token / basic
+      auth-type: ${CHROMA_AUTH_TYPE:none}
+      # token 认证时使用
+      token: ${CHROMA_TOKEN:}
+      # basic 认证时用户名
+      username: ${CHROMA_USERNAME:}
+      # basic 认证时密码
+      password: ${CHROMA_PASSWORD:}
+      # 集合名称（类似表名/索引名）
+      collection-name: ${CHROMA_COLLECTION_NAME:langchain_knowledge}
+      # 租户名称（多租户场景）
+      tenant: ${CHROMA_TENANT:default_tenant}
+      # 数据库名称（逻辑库）
+      database: ${CHROMA_DATABASE:default_database}
+      # 连接超时（秒）
+      connect-timeout-seconds: ${CHROMA_CONNECT_TIMEOUT_SECONDS:10}
+      # 读取超时（秒）
+      read-timeout-seconds: ${CHROMA_READ_TIMEOUT_SECONDS:30}
+      # 写入超时（秒）
+      write-timeout-seconds: ${CHROMA_WRITE_TIMEOUT_SECONDS:30}
+
+# =========================
+# Spring 基础配置
+# =========================
+spring:
+  application:
+    # 应用名
+    name: langchain-chat
+  main:
+    # 关闭启动 Banner
+    banner-mode: off
+
+# 服务端口
+server:
+  port: 8080
+
+# 日志级别
+logging:
+  level:
+    # 项目业务日志级别
+    com.example.langchain: DEBUG
+    # LangChain4j 框架日志级别
+    dev.langchain4j: DEBUG
